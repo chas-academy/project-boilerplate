@@ -1,7 +1,7 @@
 version: '3.5'
+
 services:
   express_api:
-    container_name: express_api
     build:
       context: ./api
       dockerfile: Dockerfile
@@ -10,16 +10,11 @@ services:
     working_dir: /home/node/app/api
     volumes:
       - ./:/home/node/app
-    ports:
-      - 7770:7770
-    environment:
-      - POSTGRES_HOST=database
     depends_on:
       - database
     env_file:
       - ./api/.env
   react_client:
-    container_name: react_client
     build:
       context: ./client
       dockerfile: Dockerfile
@@ -27,18 +22,18 @@ services:
     working_dir: /home/node/app/client
     volumes:
       - ./:/home/node/app
-    ports:
-      - 7771:7771
     env_file:
       - ./client/.env
   database:
-    container_name: postgres_db
-    image: postgres:9.6
+    image: onjin/alpine-postgres:9.6
     volumes:
       - database:/var/lib/postgresql/data
-    ports:
-      - 7772:5432
     env_file:
       - ./api/.env
 volumes:
   database:
+
+networks:
+  default:
+    external:
+      name: service-tier
