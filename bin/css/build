@@ -2,4 +2,4 @@
 source $PWD/bin/bash.sh
 
 execute cd client
-execute yarn run build-css
+execute npm run build-css
