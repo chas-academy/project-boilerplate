@@ -1,7 +1,7 @@
 #!/bin/bash
 source $PWD/bin/bash.sh
 
-$PWD/bin/run yarn
+$PWD/bin/run npm install
 $PWD/bin/run node_modules/.bin/sequelize db:drop
 $PWD/bin/run node_modules/.bin/sequelize db:create
 $PWD/bin/run node_modules/.bin/sequelize db:migrate
