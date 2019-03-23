@@ -6,7 +6,7 @@ services:
     ports:
       - 7770:80
     env_file:
-      - ./api/.env.prod
+      - ./api/deploy/.env.prod
   react_client:
     container_name: react_client-production
     ports:
@@ -17,10 +17,10 @@ services:
       - VIRTUAL_HOST=production.client.local
       - VIRTUAL_PORT=7771
     env_file:
-      - ./client/.env.prod
+      - ./client/deploy/.env.prod
   database:
     container_name: postgres_db-production
     ports:
       - 5432:5432
     env_file:
-      - ./api/.env.prod
+      - ./api/deploy/.env.prod
